@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 8.Crear una caja de texto donde quepan 100 caracteres, y que a medidas que
+     escribamos nos avise del número de caracteres que quedan libres. Además, se
+      debe permitir pulsar las teclas Backspace, Supr. y las flechas horizontales 
+      cuando se haya llegado al máximo número de caracteres. -->
+
+
+      <label for="texto">Escribe algo:</label>
+      <input type="text" id="texto" maxlength="100" oninput="contarCaracteres()" />
+  
+      <p id="contador">Caracteres restantes: 100</p>
+  
+      <script>
+          function contarCaracteres() {
+              var cajaTexto = document.getElementById('texto');
+              var contador = document.getElementById('contador');
+              var caracteresRestantes = 100 - cajaTexto.value.length;
+  
+              if (caracteresRestantes >= 0) {
+                  contador.textContent = 'Caracteres restantes: ' + caracteresRestantes;
+              } else {
+                  // Permitir retroceder
+                  var teclasPermitidas = [8, 37, 39];
+                  if (teclasPermitidas.indexOf(event.keyCode) !== -1) {
+                      contador.textContent = 'Has alcanzado el límite de caracteres.';
+                  } else {
+                      // No poder escribir si se supera el límite
+                      cajaTexto.value = cajaTexto.value.slice(0, 100);
+                  }
+              }
+          }
+      </script>
+</body>
+</html>

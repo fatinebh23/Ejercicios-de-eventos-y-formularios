@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 5.Crear un script que informe al usuario en que zona de la pantalla ha 
+    pulsado el ratón. Las zonas definidas son las siguientes: izquierda arriba,
+     izquierda abajo, derecha arriba y derecha abajo. Para determinar el tamaño
+      de la ventana del navegador, utilizar la función tamanoVentanaNavegador() 
+      proporcionada. -->
+      <body>
+        <div id="info"></div>
+        <p>DALE CLICK A LA PANTALLA</p>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+    
+    </body>
+
+      <script>
+        function tamanoVentanaNavegador() {
+            var ancho = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            var alto = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            return { ancho: ancho, alto: alto };
+        }
+
+        function informarZona(evento) {
+            var tamanoVentana = tamanoVentanaNavegador();
+            var mitadAncho = tamanoVentana.ancho / 2;
+            var mitadAlto = tamanoVentana.alto / 2;
+
+            var mensaje = '';
+
+            if (evento.clientX < mitadAncho) {
+                mensaje += 'Izquierda ';
+            } else {
+                mensaje += 'Derecha ';
+            }
+
+            if (evento.clientY < mitadAlto) {
+                mensaje += 'arriba';
+            } else {
+                mensaje += 'abajo';
+            }
+
+            alert('Has pulsado en la zona: ' + mensaje);
+        }
+
+        // Asignar el manejador semántico al evento "click"
+        document.addEventListener('click', informarZona);
+    </script>
+</body>
+</html>

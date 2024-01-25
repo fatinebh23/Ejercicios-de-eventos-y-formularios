@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 4.Crear un programa que nos muestre las coordenadas del ratón dentro del 
+    navegador y dentro de la página en la que estamos. Deben quedar claras las diferencias entre las propiedades screen, page y client del evento. -->
+
+    <div id="info">
+        <p>Coordenadas del ratón:</p>
+        <p>Screen: <span id="screenCoords"></span></p>
+        <p>Page: <span id="pageCoords"></span></p>
+        <p>Client: <span id="clientCoords"></span></p>
+    </div>
+
+    <script>
+        function mostrarCoordenadas(evento) {
+            var screenCoords = document.getElementById('screenCoords');
+            var pageCoords = document.getElementById('pageCoords');
+            var clientCoords = document.getElementById('clientCoords');
+
+            // Coordenadas de la pantalla
+            var screenX = evento.screenX;
+            var screenY = evento.screenY;
+
+            // Coordenadas de la página 
+            var pageX = evento.pageX;
+            var pageY = evento.pageY;
+
+            // Coordenadas del cliente 
+            var clientX = evento.clientX;
+            var clientY = evento.clientY;
+
+           
+            screenCoords.innerHTML = '(' + screenX + ', ' + screenY + ')';
+            pageCoords.innerHTML = '(' + pageX + ', ' + pageY + ')';
+            clientCoords.innerHTML = '(' + clientX + ', ' + clientY + ')';
+        }
+
+        // Movimiento del mouse el cual se posiciona 
+        document.addEventListener('mousemove', mostrarCoordenadas);
+    </script>>
+</body>
+</html>

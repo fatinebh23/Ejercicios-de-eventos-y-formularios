@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--9. Crea dos formularios.
+        
+        El primero pedirá al usuario su nombre, apellido, teléfono, correo electrónico y dni.
+
+         El segundo pedirá su dirección: dirección, código postal, localidad y provincia. Comprueba mediante expresiones 
+         regulares y lanzando un alert que:
+
+    Nombre y apellido no tengan números y no estén vacíos.
+    Que el DNI sea de la forma nueve digitos + letra.
+    Que el teléfono tenga nueve digitos exclusivamente.
+    Que el correo electrónico sea de la forma texto@texto.texto
+    Coloca el foco en el segundo elemento del primer formulario por defecto (apellido).
+    La validación se debe hacer mediante clases asociadas a los elementos del formulario. Por ejemplo: 
+    <input type="text" id="nombre" name="nombre" class="requerido texto" />  -->
+<p><h2>Formulario 1:</h2></p>
+    <form id="formularioDatosPersonales">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" class="requerido texto" />
+        <br>
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" class="requerido texto" />
+        <br>
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono" class="requerido telefono" />
+        <br>
+        <label for="correo">Correo Electrónico:</label>
+        <input type="text" id="correo" name="correo" class="requerido correo" />
+        <br>
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni" name="dni" class="requerido dni" />
+        <br><br>
+        <input type="submit" value="Enviar" />
+    </form>
+<br>
+<br>
+<p><h2>Formulario 2:</h2></p>
+
+    <form id="formularioDireccion">
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" class="requerido texto" />
+        <br>
+        <label for="codigoPostal">Código Postal:</label>
+        <input type="text" id="codigoPostal" name="codigoPostal" class="requerido codigoPostal" />
+        <br>
+        <label for="localidad">Localidad:</label>
+        <input type="text" id="localidad" name="localidad" class="requerido texto" />
+        <br>
+        <label for="provincia">Provincia:</label>
+        <input type="text" id="provincia" name="provincia" class="requerido texto" />
+        <br><br>
+        <input type="submit" value="Enviar" />
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+      
+            document.getElementById('apellido').focus();
+
+            // Asignar manejadores de eventos a los formularios
+            document.getElementById('formularioDatosPersonales').addEventListener('submit', validarDatosPersonales);
+            document.getElementById('formularioDireccion').addEventListener('submit', validarDireccion);
+        });
+
+        function validarDatosPersonales(event) {
+            var nombre = document.getElementById('nombre');
+            var apellido = document.getElementById('apellido');
+            var telefono = document.getElementById('telefono');
+            var correo = document.getElementById('correo');
+            var dni = document.getElementById('dni');
+
+            if (!validarTexto(nombre.value)) {
+                alert('Error en el nombre.');
+                nombre.classList.add('error');
+                event.preventDefault();
+            } else {
+                nombre.classList.remove('error');
+            }
+
+            if (!validarTexto(apellido.value)) {
+                alert('Error en el apellido.');
+                apellido.classList.add('error');
+                event.preventDefault();
+            } else {
+                apellido.classList.remove('error');
+            }
+
+            if (!validarTelefono(telefono.value)) {
+                alert('Error en el teléfono.');
+                telefono.classList.add('error');
+                event.preventDefault();
+            } else {
+                telefono.classList.remove('error');
+            }
+
+            if (!validarCorreo(correo.value)) {
+                alert('Error en el correo electrónico.');
+                correo.classList.add('error');
+                event.preventDefault();
+            } else {
+                correo.classList.remove('error');
+            }
+
+            if (!validarDNI(dni.value)) {
+                alert('Error en el DNI.');
+                dni.classList.add('error');
+                event.preventDefault();
+            } else {
+                dni.classList.remove('error');
+            }
+        }
+
+        function validarDireccion(event) {
+            var direccion = document.getElementById('direccion');
+            var codigoPostal = document.getElementById('codigoPostal');
+            var localidad = document.getElementById('localidad');
+            var provincia = document.getElementById('provincia');
+
+            if (!validarTexto(direccion.value)) {
+                alert('Error en la dirección.');
+                direccion.classList.add('error');
+                event.preventDefault();
+            } else {
+                direccion.classList.remove('error');
+            }
+
+            if (!validarCodigoPostal(codigoPostal.value)) {
+                alert('Error en el código postal.');
+                codigoPostal.classList.add('error');
+                event.preventDefault();
+            } else {
+                codigoPostal.classList.remove('error');
+            }
+
+            if (!validarTexto(localidad.value)) {
+                alert('Error en la localidad.');
+                localidad.classList.add('error');
+                event.preventDefault();
+            } else {
+                localidad.classList.remove('error');
+            }
+
+            if (!validarTexto(provincia.value)) {
+                alert('Error en la provincia.');
+                provincia.classList.add('error');
+                event.preventDefault();
+            } else {
+                provincia.classList.remove('error');
+            }
+        }
+
+        function validarTexto(texto) {
+            return /^[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+$/.test(texto);
+        }
+
+        function validarTelefono(telefono) {
+            return /^\d{9}$/.test(telefono);
+        }
+
+        function validarCorreo(correo) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
+        }
+
+        function validarDNI(dni) {
+            return /^\d{8}[a-zA-Z]$/.test(dni);
+        }
+
+        function validarCodigoPostal(codigoPostal) {
+            return /^\d{5}$/.test(codigoPostal);
+        }
+    </script>
+
+</body>
+</html>

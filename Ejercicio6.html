@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 6.Divide la pantalla en 4 zonas iguales con colores rojo, amarillo, azul y verde.
+     Al pulsar sobre una de ellas, debe aparecer un alert que nos indique el color del
+      área sobre la que se ha hecho clic. -->
+      <div id="rojo" class="zona" onclick="mostrarColor('Rojo')"></div>
+      <div id="amarillo" class="zona" onclick="mostrarColor('Amarillo')"></div>
+      <div id="azul" class="zona" onclick="mostrarColor('Azul')"></div>
+      <div id="verde" class="zona" onclick="mostrarColor('Verde')"></div>
+  
+      <script>
+          function mostrarColor(color) {
+              alert('Has hecho click en la zona de color ' + color);
+          }
+      </script>
+
+
+
+<style>
+    body {
+        margin: 0;
+        display: flex;
+        height: 100vh;
+    }
+
+    .zona {
+        flex: 1;
+        cursor: pointer;
+    }
+
+    #rojo { background-color: red; }
+    #amarillo { background-color: yellow; }
+    #azul { background-color: blue; }
+    #verde { background-color: green; }
+</style>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 2.Realiza el ejercicio anterior pasando this como parámetro (y sin pasar un nº 1, 2 o 3). Pista: puedes utilizar la función de DOM previousSibling. -->
+
+    <body>
+
+        <a href="#" onclick="ocultaryMostar(this)">Enlace 1</a>
+        <div class="section">
+            <p>Contenido de la sección 1</p>
+        </div>
+    
+        <a href="#" onclick="ocultaryMostar(this)">Enlace 2</a>
+        <div class="section">
+            <p>Contenido de la sección 2</p>
+        </div>
+    
+        <a href="#" onclick="ocultaryMostar(this)">Enlace 3</a>
+        <div class="section">
+            <p>Contenido de la sección 3</p>
+        </div>
+    
+        <script>
+            function ocultaryMostar(link) {
+                var section = link.nextSibling;
+    
+               
+                while (section && section.nodeType !== 1) {
+                    section = section.nextSibling;
+                }
+    
+                if (section.style.display === 'none' || !section.style.display) {
+                    section.style.display = 'block';
+                    link.innerHTML = 'Ocultar sección';
+                } else {
+                    section.style.display = 'none';
+                    link.innerHTML = 'Mostrar sección';
+                }
+            }
+        </script>
+    
+</body>
+</html>

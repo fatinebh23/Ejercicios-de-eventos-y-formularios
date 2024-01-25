@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 10.Modifica el ejercicio anterior para que cada vez que haya un error aplique un
+     estilo al campo que origina el error y no envíe el formulario.
+      Cada vez que se le de a enviar, debe “borrar” los errores previos. -->
+
+
+<style>
+    
+    input {
+        display: block;
+        width: 250px;
+        text-align: left;
+        clear: right;
+    }
+</style>
+
+
+<script>
+    function ValidaCampos(formulario) {
+       
+        var val_telefono = /^\d{9}$/; // 9 cifras numéricas.
+        var val_dni = /^\d{8}[a-zA-Z]$/;
+        var val_numerico = /^\d*$/;
+        var val_requerido = /\S+/;
+        var val_email = /^(.+\@.+\..+)$/;
+
+        /*recorremos los campos del formulario:*/
+        for (i = 0; i < formulario.elements.length - 1; i++) {
+            elemento = formulario.elements[i];
+            if (elemento.type != "text")
+                continue;
+            var palabras = elemento.className.split(" ");
+            for (k = 0; k < palabras.length; k++) {
+                switch (palabras[k]) {
+                    case "requerido":
+                        if (elemento.value.length < 1)
+                            alert("dni no valido");
+                        break;
+                    case "dni":
+                        if (!val_dni.test(elemento.value))
+                            alert("dni no valido");
+                        break;
+                    case "telefono":
+                        if (!val_telefono.test(elemento.value))
+                            alert("telefono no valido");
+                        break;
+                    case "numerico":
+                        if (!val_numerico.test(elemento.value))
+                            alert("el campo debe ser numérico");
+                        break;
+                    case "email":
+                        if (!val_email.test(elemento.value))
+                            alert("El email no es válido");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+</script>
+</head>
+
+<body>
+<form name="formulario1" onSubmit="return ValidaCampos(this)">
+    <fieldset>
+        <legend>Formulario 1:</legend>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" class="requerido texto" />
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" class="requerido texto" />
+        <label>Teléfono:</label>
+        <input type="text" id="telefono" name="telefono" class="telefono" />
+        <label>Correo electrónico:</label>
+        <input type="text" id="correo" name="correo" class="requerido email" />
+        <label>DNI:
+        </label>
+        <input type="text" id="dni" name="dni" class="requerido dni" />
+        <input type="submit" value="enviar" />
+    </fieldset>
+</form>
+
+<form name="formulario2" onSubmit="return ValidaCampos(this)">
+    <fieldset>
+        <legend>Formulario 2:</legend>
+        <label>Dirección:</label>
+        <input type="text" id="direccion" name="direccion" />
+        <label>Código Postal:</label>
+        <input type="text" id="cp" name="cp" />
+        <label>Localidad:</label>
+        <input type="text" id="localidad" name="localidad" />
+        <label>Provincia:
+        </label>
+        <input type="text" id="provincia" name="provincia" />
+        <input type="submit" value="enviar" />
+    </fieldset>
+</form>
+</body>
+
+</html>

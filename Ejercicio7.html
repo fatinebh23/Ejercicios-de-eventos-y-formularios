@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 7.Modifica la siguiente función para crear tres cajas de texto, para insertar números,
+     caracteres o ambos. El máximo número de caracteres que puede haber en cada caja son 10. 
+     Comprueba las discrepancias entre distintos navegadores, por ejemplo Chrome y Firefox. -->
+
+
+     <script>
+        function permite(elEvento, permitidos, maxLength) {
+            // Variables que definen los caracteres
+            var numeros = "0123456789";
+            var caracteres = " abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+            var numeros_caracteres = numeros + caracteres;
+            var teclas_especiales = [8, 37, 39, 46];
+           n
+            switch(permitidos) {
+                case 'num':
+                    permitidos = numeros;
+                    break;
+                case 'car':
+                    permitidos = caracteres;
+                    break;
+                case 'num_car':
+                    permitidos = numeros_caracteres;
+                    break;
+            }
+            // Obtener la tecla pulsada 
+            var evento = elEvento || window.event;
+            var codigoCaracter = evento.charCode || evento.keyCode;
+            var caracter = String.fromCharCode(codigoCaracter);
+         
+            // (teclas para borrado y flechas horizontales)
+            var tecla_especial = false;
+            for(var i in teclas_especiales) {
+                if(codigoCaracter == teclas_especiales[i]) {
+                    tecla_especial = true;
+                    break;
+                }
+            }
+            // Comprobar si la tecla pulsada se encuentra en los caracteres permitidos
+            // o si es una tecla especial, y verificar la longitud máxima
+            return (permitidos.indexOf(caracter) != -1 || tecla_especial) && (elEvento.target.value.length < maxLength || tecla_especial);
+        }
+    </script>
+
+    
+    <input type="text" id="numeros" onkeypress="return permite(event, 'num', 10)" placeholder="Solo números" />
+    <input type="text" id="letras" onkeypress="return permite(event, 'car', 10)" placeholder="Solo letras" />
+    <input type="text" id="numeros_letras" onkeypress="return permite(event, 'num_car', 10)" placeholder="Números y letras" />
+
+</body>
+</html>
